@@ -1,0 +1,15 @@
+button{
+    background-color: cornsilk;
+    border-style:none;
+    border-radius: 10px;
+    font-size: 32px;
+    padding:12px;
+    margin:16px;
+}
+button:hover{
+    background-color: coral;
+    cursor: grab;
+}
+.button-link{
+
+}

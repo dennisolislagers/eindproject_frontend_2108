@@ -1,37 +1,31 @@
-import React from 'react';
-import {NavLink} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import './NavMenu.css';
+import { AuthenticatedContext}  from "../../context/AuthenticatedContext";
+
 
 function NavMenu () {
+
+    const { isAuthenticated } = useContext(AuthenticatedContext)
+    const { logout } = useContext(AuthenticatedContext)
+
     return (
         <nav>
-            <div className="nav-menu-container">
-            <ul>
-                <li>
-                    <NavLink to="/" exact activeClassName="active-link">Home</NavLink>
-                </li>
-
-                <li>
-                    <NavLink to="/inloggen" activeClassName="active-link">Inloggen</NavLink>
-                </li>
-
-                <li>
-                    <NavLink to="/inschrijven" activeClassName="active-link">Inschrijven</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/breakfast" activeClassName="active-link">Ontbijten</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/lunch" activeClassName="active-link">Lunchen</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/diner" activeClassName="active-link">Dineren</NavLink>
-                </li>
-
-
-            </ul>
-            </div>
+            <NavLink to="/" exact activeClassName="home-container">Home</NavLink>
+              <span>
+                  {isAuthenticated ?
+                    <>
+                    <NavLink className="link-button" to="/menu" >Hoofdmenu</NavLink>
+                    <NavLink className="link-button" to="/" onClick={ logout } >Uitloggen</NavLink>
+                    </>
+                    :
+                    <>
+                    <NavLink className="link-button" to="/inloggen" >Inloggen</NavLink>
+                    <NavLink className="link-button" to="/inschrijven" >Inschrijven</NavLink>
+                    </>
+                }
+              </span>
         </nav>
     );
 };
-
 export default NavMenu;

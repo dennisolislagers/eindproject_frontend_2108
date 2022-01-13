@@ -1,14 +1,16 @@
 import React from 'react';
+import './Button.css'
 
-function Button ({message, enabled, name, image}) {
+function Button ({ type="button", name, onClick, title, onSubmit}) {
     return (
-        <button
-            disabled={{enabled}}
-            type="button"
-            onClick={() => console.log({message})}>
-            {name}
-            background-image={image}
-        </button>
+        <label>
+            {title}
+            <input
+                type={type}
+                name={name}
+                onClick={onClick}
+            />
+        </label>
     )
 }
 

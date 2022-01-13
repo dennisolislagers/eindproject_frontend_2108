@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Link} from "react-router-dom";
+import './Homepage.css';
+import { AuthenticatedContext } from "../../context/AuthenticatedContext";
 
 function Homepage () {
-    return (
-        <div className="home-page-container">
-            <h1>WAT ETEN WE VANDAAG</h1>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, alias aliquam animi consectetur consequatur debitis deleniti ea error expedita impedit iste magni maxime necessitatibus nesciunt, nisi officia pariatur, reiciendis suscipit temporibus totam. Ab dolorum fugiat ipsa natus optio quos sit, temporibus voluptatibus. Assumenda blanditiis consequatur dolor excepturi ipsam iste magni minus molestias nisi, nostrum nulla quibusdam quod quos rem, saepe sapiente veniam? At atque autem ex facilis nihil nostrum officia velit? Ad architecto atque autem blanditiis cum dolor ducimus earum enim, eum ex laborum magni maxime minus natus nobis nostrum obcaecati officiis pariatur perferendis qui quo ratione saepe tempora unde veniam voluptate voluptatem voluptatum. Ad consectetur consequuntur cupiditate, deleniti dolore ducimus error et exercitationem facere hic iure laudantium mollitia obcaecati perspiciatis praesentium quibusdam rem sequi soluta, sunt voluptatibus. Accusamus commodi culpa delectus molestiae nisi numquam, quisquam! Ab aliquid architecto aspernatur at beatae, dolore itaque, nemo nisi officiis, provident quibusdam reiciendis. A accusantium, aspernatur autem ea eligendi facilis hic illum ipsa iusto laboriosam laudantium minima molestiae mollitia neque numquam porro quaerat quibusdam ratione reiciendis sint tempora voluptas voluptatum! Dicta illum nemo nisi officiis veniam! Aut ea eligendi impedit in ipsa laborum natus perferendis repellat sunt tempora? Commodi, corporis cupiditate deleniti nemo repellendus sunt unde vel. Amet cumque nihil officiis porro quod voluptates? Animi consequatur corporis debitis exercitationem, harum ipsam iure, molestias mollitia nam officia, quia rerum vel voluptas. Ad adipisci deserunt dolorum enim fugit illum itaque iure laudantium maxime, neque, perferendis reiciendis saepe sequi sit voluptatibus? Consequuntur eos impedit recusandae repellendus?
-            </p>
 
-            <p> Log <Link to="/inloggen"> Hier </Link> in om gebruik te maken van de applicatie. </p>
-            <p> Nog niet ingeschreven? Schrijf je <Link to ="/inschrijven"> Hier </Link> in!!</p>
+        const { isAuthenticated } = useContext(AuthenticatedContext)
+
+    return (
+        <div className="page-container">
+            <h1>WAT ETEN WE VANDAAG</h1>
+            <h2>Welkom op mijn webpagina.</h2>
+            <p>Ik ben Dennis Olislagers en in mijn vrije tijd doe ik heel graag koken.</p>
+            <p>Heel vaak kom ik thuis na het werken en weet ik niet goed welk eten ik moet gaan bereiden.</p>
+            <p>Omdat ik hierover ook vaak discussies heb met mijn vriendin ben ik op het idee gekomen om eem webpagina te maken die deze keuze voor mij maakt.</p>
+            <p>Door al dit eten komt het nog wel eens voor dat je een kilootje bijkomt, hierdoor heb ik gedacht dat als ik deze webpagina ga maken er ook keuzes gemaakt kunnen worden voor iemand die een speciaal dieet heeft.</p>
+            <p>Mijn vriendin en ik lusten eigenlijk alles maar er zijn natuurlijk ook mensen die ietwat kieskeuriger zijn en hier wil ik uiteraard rekening mee houden.</p>
+            <p>Met deze mensen heb ik in mijn webpagina ook rekening gehouden en hierdoor kun je een keuze maken om ingrediënten weg te laten die je niet lekker vindt.</p>
+            <p>Ik zou zeggen, log in of schrijf je in en ga op ontdekkingstocht op mijn webpagina.</p>
+            <p>Als je het een leuke webpagina vindt vind ik het heel erg leuk als je een opmerking achter laat op de pagina.</p>
+            <p>Ook sta ik altijd open voor commentaar dus als er iets is dat je mist of beter kan mag je ook altijd achterlaten</p>
+            <br/>
+                {isAuthenticated ?
+                <p>KLIK <Link to="/uitloggen">HIER</Link> om uit te loggen.</p>
+                        :
+                <>
+                <p>Klik <Link to="/inloggen">HIER</Link> om in te loggen.</p>
+                <p>Klik <Link to ="/inschrijven">HIER</Link> om je in te schrijven.</p>
+                </>
+                }
         </div>
     );
 }

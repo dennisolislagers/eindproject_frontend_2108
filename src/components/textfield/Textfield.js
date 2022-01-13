@@ -1,12 +1,12 @@
 import React from 'react';
+import './Textfield.css'
 
 
-function Inputfield ({errors, register, labelText, labelId, inputType = "text", inputName, validationRules})
+function Textfield ({className="textfield-container", errors, register, labelText, labelId, inputType = "text", inputName, validationRules})
 {
-    console.log(errors[inputName]);
 
     return (
-        <>
+        <div className={className}>
                 <label htmlFor={labelId} className={inputName}>
                     {labelText}
                 </label>
@@ -15,8 +15,8 @@ function Inputfield ({errors, register, labelText, labelId, inputType = "text", 
                     className={errors[inputName] && "error"}
                     {...register(inputName, validationRules)}/>
                     { errors[inputName] && <p className="error-message" >{errors[inputName].message} </p>}
-        </>
+        </div>
                 );
 }
 
-export default Inputfield;
+export default Textfield;
