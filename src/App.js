@@ -9,6 +9,7 @@ import Resultpage from "./pages/resultpage/Resultpage";
 
 import { AuthenticatedContext } from "./context/AuthenticatedContext";
 
+
 function App() {
     const { isAuthenticated } = useContext(AuthenticatedContext)
     return (
@@ -24,11 +25,11 @@ function App() {
                 <Route path="/inschrijven">
                     <Subscribepage />
                 </Route>
-                <Route path="/resultaat">
+                <Route path="/menu">
                     { isAuthenticated ? <Resultpage /> : <Redirect to="/"/>}
                 </Route>
             </Switch>
-                <footer className="page-container">
+                <footer className="footer-container">
                     <div id="edamam-badge" data-color="transparant"> </div>
                 </footer>
         </>

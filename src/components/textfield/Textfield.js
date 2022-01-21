@@ -2,20 +2,21 @@ import React from 'react';
 import './Textfield.css'
 
 
-function Textfield ({className="textfield-container", errors, register, labelText, labelId, inputType = "text", inputName, validationRules})
+function Textfield ( {id, title, type, errors, register, name, validationRules, value, onChange})
 {
-
     return (
-        <div className={className}>
-                <label htmlFor={labelId} className={inputName}>
-                    {labelText}
-                </label>
+        <>
+                <label htmlFor={id}>{title}</label>
                 <input
-                    type={inputType} id={labelId}
-                    className={errors[inputName] && "error"}
-                    {...register(inputName, validationRules)}/>
-                    { errors[inputName] && <p className="error-message" >{errors[inputName].message} </p>}
-        </div>
+                    type={type}
+                    id={id}
+                    {...register(name, validationRules)}
+                    className={errors[name] && "error"}
+                    value={value}
+                    onChange ={onChange}
+                    />
+                    { errors[name] && <p className="error-message" >{errors[name].message} </p>}
+        </>
                 );
 }
 

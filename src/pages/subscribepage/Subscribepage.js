@@ -1,49 +1,63 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
 import Textfield from "../../components/textfield/Textfield";
 import './Subscribepage.css'
 import { useHistory } from "react-router-dom";
 import Button from "../../components/button/Button";
+import axios from "axios";
 
 function Subscribepage () {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory()
 
 
-    function onFormSubmit(data) {
+   async function onFormSubmit(data) {
         console.log(data)
-        history.push('/inloggen')
+
+        try{
+            await axios.post('http://localhost:3000/register',
+                {
+                    username: username,
+                    email: email,
+                    password: password,
+                })
+            history.push('/inloggen')
+        }catch (e) {
+            console.error(e)
+        }
     }
-    console.log(errors);
+        console.log(errors);
+
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
         <div className="page-container">
             <form onSubmit={handleSubmit(onFormSubmit)}>
                 <fieldset>
-            <legend>INSCHRIJVEN</legend>
-
-                <div>
+            <legend>REGISTREREN</legend>
                     <Textfield
+                        name="username"
+                        title="Gebruikersnaam:  "
                         errors={errors}
                         register={register}
-                        labelText="Gebruikersnaam: "
-                        labelId="details-username"
-                        inputName="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         validationRules={{
                             required: {
-                                value: true,
-                                message: "Gebruikersnaam moet ingevuld zijn!!!"
+                                minLength: 6,
+                                message: "De gebruikersnaam moet minimaal 6 tekens bevatten!!!"
                         }
                         }}
                     />
-                </div>
                     <Textfield
+                        name="email"
+                        title="Emailadres:  "
                         errors={errors}
                         register={register}
-                        labelText="Emailadres: "
-                        labelId="details-emailadres"
-                        inputName="emailadres"
-                        inputType="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         validationRules={{
                             required: {
                                 value:true,
@@ -51,51 +65,23 @@ function Subscribepage () {
                             }
                         }}
                         />
-                <div>
                     <Textfield
+                        name="password"
+                        title="Wachtwoord:  "
                         errors={errors}
                         register={register}
-                        labelText="Wachtwoord: "
-                        labelId="details-password"
-                        inputName="password"
-                        inputType="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         validationRules={{
-                            required: {
-                                value: true,
-                                message: "Wachtwoord moet ingevuld zijn"
+                            minLength: {
+                                value: 6,
+                                message: "Het wachtwoord moet 6 tekens bevatten !!!!"
                         }
                         }}
                     />
-                </div>
-                <div>
-                    <Textfield
-                        errors={errors}
-                        register={register}
-                        labelText="Herhaal Wachtwoord: "
-                        labelId="details-repeat"
-                        inputName="repeat"
-                        inputType="password"
-                        validationRules={{
-                            required: {
-                                value: true,
-                                message: "Wachtwoord moet ingevuld zijn"
-                        }
-                        }}
-                    />
-                </div>
-                <div>
-                    <Textfield className="checkbox"
-                               errors={errors}
-                               register={register}
-                               labelText="Ik schrijf me in voor de nieuwsbrief"
-                               labelId="details-newsletter"
-                               inputName="newsletter"
-                               inputType="checkbox"
-                    />
-                </div>
-                    <br/>
                     <Button
                         type="submit"
+                        title="Registreren"
                     />
                 </fieldset>
 

@@ -1,15 +1,14 @@
 button{
     background-color: cornsilk;
-    border-style:none;
+    color: darkviolet;
+    width:auto;
+    height:50px;
+    border-style: none;
     border-radius: 10px;
-    font-size: 32px;
-    padding:12px;
-    margin:16px;
+    margin:15px;
+    font-size: 24px;
 }
 button:hover{
-    background-color: coral;
-    cursor: grab;
-}
-.button-link{
-
+    background-color: chocolate;
+    color:white
 }

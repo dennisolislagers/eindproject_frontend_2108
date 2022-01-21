@@ -1,0 +1,46 @@
+.healthLabels{
+    padding: 20px;
+    border: 20px;
+    list-style: none;
+}
+.result-container{
+    background-color: chocolate;
+   text-align: center;
+    /*padding:20px;*/
+    /*border:20px;*/
+    width: 400px;
+}
+.resultpage-container{
+    display: flex;
+    align-items: baseline;
+    align-content: flex-start;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+.result-item{
+    width: 20%;
+    height: 480px;
+    padding: 20px;
+    color: white;
+    background-color:chocolate;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+.loading-icon {
+    width: 16px;
+    height: 16px;
+    animation: rotating 1.5s linear infinite;
+}
+img{
+    border-radius: 10px;
+    width: 100%;
+}
+.result-item a:hover{
+    color:black;
+}
+.result-item a{
+    color:white;
+    line-style: none;
+}

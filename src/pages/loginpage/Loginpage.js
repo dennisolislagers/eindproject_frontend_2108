@@ -1,52 +1,66 @@
-import React, { useContext } from 'react';
+import React, {useContext, useState} from 'react';
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 import Textfield from "../../components/textfield/Textfield";
 import Button from "../../components/button/Button";
 import { AuthenticatedContext } from "../../context/AuthenticatedContext";
 import './Loginpage.css'
+import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 function Loginpage() {
     const {register, handleSubmit, formState: { errors } } = useForm();
-    const history = useHistory()
     const { login } = useContext(AuthenticatedContext)
+    const history = useHistory()
 
-
-    function onFormSubmit(data) {
+    async function onFormSubmit(data) {
         console.log(data)
-        login()
-        history.push('/resultaat')
+
+        try{
+            const result = await axios.post('http://localhost:3000/login',
+                {
+                    email: email,
+                    password: password,
+                })
+            console.log(result.data)
+            history.push('/menu')
+            login(result.data.accessToken);
+        }catch(e){
+            console.error(e)
+        }
     }
     console.log(errors);
+
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
     return (
         <div className="page-container">
             <form onSubmit={handleSubmit(onFormSubmit)}>
                 <fieldset>
                     <legend>INLOGGEN</legend>
-                <div>
                     <Textfield
+                        id="emailadres-field"
+                        name="email"
+                        title="Emailadres: "
                         errors={errors}
                         register={register}
-                        labelText="Gebruikersnaam: "
-                        labelId="details-username"
-                        inputName="username"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         validationRules={{
                             required: {
-                                value: true,
-                                message: "Gebruikersnaam moet ingevuld zijn"
+                                value:true,
+                                message: "Emailadres moet ingevuld zijn!!!"
                             }
                         }}
                     />
-                </div>
-                <div>
                     <Textfield
+                        id="password-field"
+                        name="password"
+                        title="Wachtwoord: "
                         errors={errors}
                         register={register}
-                        labelText="Wachtwoord: "
-                        labelId="details-password"
-                        inputName="password"
-                        inputType="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         validationRules={{
                             required: {
                                 value: true,
@@ -54,11 +68,10 @@ function Loginpage() {
                             }
                         }}
                     />
-                </div>
 
-                        <br/>
                     <Button
                         type="submit"
+                        title="LOG IN"
                     />
 
                 </fieldset>

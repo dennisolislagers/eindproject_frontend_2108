@@ -8,33 +8,33 @@ body {
   color: white;
 }
 
-h1 {
-  font-size: 50px;
-}
-
-h4 {
-  font-size: 18px;
-}
-
 .page-container {
-  margin: 30px 60px 30px 60px;
+  margin: 30px 200px 30px 200px;
   text-align: center;
-}
-
-.page-container {
   background-color:cornsilk;
   padding:25px;
   border-radius: 10px;
   color: darkviolet;
 }
 
-footer{
+.footer-container{
   display: flex;
   justify-content: flex-end;
+  background-color:cornsilk;
+  padding:25px;
+  margin: 30px 200px 30px 200px;
+  border-radius: 10px;
 }
 
 fieldset{
   border: 2px solid darkviolet;
   border-radius: 10px;
   background-color: white;
+  padding: 25px;
+  margin: 50px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+

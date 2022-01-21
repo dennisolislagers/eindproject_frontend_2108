@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState, useContext } from 'react';
 import Button from "../../components/button/Button";
 import './Resultpage.css'
 import axios from "axios";
 import QueryForm from "../../components/queryform/QueryForm";
+// import Result from "../../components/result/Result";
 import roundedNumbers from "../../helpers/roundedNumbers";
+import { ShowResultContext} from "../../context/ShowResultContext";
+import zandloper from "../../assets/logo zandloper.png"
 
 
-const apiKey = '77cbcf9f1fa3d4f3c17a7c2f9abe2e8a'
-const apiId = '3fe16d27'
+
+
 
 function Resultpage () {
     const [menuData, setMenuData] = useState('');
     const [loading, toggleLoading] = useState(false)
     const [error, toggleError] = useState(false)
     const [query, setQuery] = useState('');
-    const history = useHistory();
-
+    const { form } = useContext(ShowResultContext)
+    const { showResult } = useContext(ShowResultContext)
     function goToMainMenuPage() {
-        history.push('/')
+        form()
     }
 
     useEffect(() => {
@@ -26,10 +28,9 @@ function Resultpage () {
             toggleError(false);
             toggleLoading(true);
             try {
-                const result = await
-                    axios.get(`https://api.edamam.com/search?app_id=${apiId}&app_key=${apiKey}&q=${query}&=pork`);
-                console.log(result.data.hits[0]);
-                setMenuData(result.data.hits);
+                const result = await axios.get(query);
+                console.log(result.data);
+                setMenuData(result.data);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -43,37 +44,45 @@ function Resultpage () {
     }, [query])
 
     return (
-        <>
-            <div>
-                <QueryForm setQueryHandler={setQuery}/>
-            </div>
-            <div className="page-container">
-                <h1>resultaten</h1>
+        <div className="page-container">
+            {!showResult ?
                 <div>
-                    {error && <p>Er is iets misgegaan, sluit af en start opnieuw op </p>}
-                    {loading && <p>Bezig met ophalen van de gegevens</p>}
+                    <QueryForm setQueryHandler={setQuery}/>
                 </div>
-                {menuData &&
-                menuData.map((recipe) => {
-                      return(
-                          <>
-                          <h1>{recipe.recipe.label}</h1>
-                            <img src={recipe.recipe.image} alt={recipe.recipe.label}/>
-                            <p>Calorieën: {roundedNumbers(recipe.recipe.calories)}</p>
-                            <a href={recipe.recipe.url}>Link naar de Webpagina</a>
-                            <li>{recipe.recipe.healthLabels}</li>
-                            </>
-                          )
+                :
+                <>
+                    <fieldset>
+                        <legend>RESULTATEN</legend>
+                    <div>
+                        {error && <p>Er is iets misgegaan, sluit af en start opnieuw op </p>}
+                        {loading && <img className="loading-icon" src={zandloper} alt=""/>}
+                    </div>
+
+                <div className="resultpage-container">
+                    {menuData &&
+                    menuData.hits.map((recipe) => {
+                        return (
+                            <div className='result-item' key={recipe.recipe.label}>
+                                <h3>{recipe.recipe.label}</h3>
+                                <a href={recipe.recipe.url}>LINK NAAR PAGINA</a>
+                                <img src={recipe.recipe.image} alt={recipe.recipe.label}/>
+                                <p>Calorieën: {roundedNumbers(recipe.recipe.calories)}</p>
+                                <p>Bron: {recipe.recipe.source}</p>
+                            </div>
+                        )
                     })}
-                <div>
+
+                </div>
                     <Button
                         type="button"
                         onClick={goToMainMenuPage}
-                        title="Terug naar het hoofdmenu"/>
-                </div>
-            </div>
-
-        </>
-    )
+                        title="KEUZEMENU"/>
+                    <Button
+                        onClick={() => setQuery(menuData._links.next.href)}
+                        title="Volgende 20"
+                    />
+                    </fieldset>
+                </>}
+        </div>   )
     }
 export default Resultpage;

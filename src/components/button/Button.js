@@ -1,17 +1,19 @@
 import React from 'react';
 import './Button.css'
 
-function Button ({ type="button", name, onClick, title, onSubmit}) {
+function Button ({ className="button-item", type="button", disabled, name, onClick, title}) {
     return (
-        <label>
+
+        <div className={className}>
+        <button
+        type={type}
+        disabled={disabled}
+        onClick={onClick}
+        name={name}>
             {title}
-            <input
-                type={type}
-                name={name}
-                onClick={onClick}
-            />
-        </label>
-    )
+        </button>
+        </div>
+)
 }
 
 export default Button;

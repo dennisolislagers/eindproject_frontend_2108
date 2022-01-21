@@ -1,0 +1,8 @@
+.radiobutton-container{
+    display:flex;
+    align-items: center;
+}
+
+.radiobutton-container input{
+width:20px;
+}

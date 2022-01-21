@@ -2,10 +2,20 @@ import React, { useContext } from 'react';
 import {Link} from "react-router-dom";
 import './Homepage.css';
 import { AuthenticatedContext } from "../../context/AuthenticatedContext";
+import { ShowResultContext} from "../../context/ShowResultContext";
 
 function Homepage () {
 
-        const { isAuthenticated } = useContext(AuthenticatedContext)
+        const { isAuthenticated, logout } = useContext(AuthenticatedContext)
+        const { form } = useContext(ShowResultContext)
+
+        function logoutButton () {
+                logout()
+        }
+        function goToMenupage () {
+                form()
+        }
+
 
     return (
         <div className="page-container">
@@ -22,11 +32,14 @@ function Homepage () {
             <p>Ook sta ik altijd open voor commentaar dus als er iets is dat je mist of beter kan mag je ook altijd achterlaten</p>
             <br/>
                 {isAuthenticated ?
-                <p>KLIK <Link to="/uitloggen">HIER</Link> om uit te loggen.</p>
+                <>
+                <p>Klik <Link to="./" onClick={logoutButton}>HIER</Link> om uit te loggen.</p>
+                <p>Klik <Link to='./menu' onClick={goToMenupage}>HIER</Link> om naar het keuzemenu te gaan</p>
+                </>
                         :
                 <>
                 <p>Klik <Link to="/inloggen">HIER</Link> om in te loggen.</p>
-                <p>Klik <Link to ="/inschrijven">HIER</Link> om je in te schrijven.</p>
+                <p>Klik <Link to ="/inschrijven">HIER</Link> om je in te registreren.</p>
                 </>
                 }
         </div>
