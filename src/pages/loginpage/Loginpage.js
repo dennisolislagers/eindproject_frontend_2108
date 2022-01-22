@@ -16,21 +16,20 @@ function Loginpage() {
         console.log(data)
 
         try{
-            const result = await axios.post('http://localhost:3000/login',
+            const result = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin',
                 {
-                    email: email,
+                    username: username,
                     password: password,
                 })
-            console.log(result.data)
             history.push('/menu')
             login(result.data.accessToken);
+            console.log(result.data)
         }catch(e){
             console.error(e)
         }
     }
-    console.log(errors);
 
-    const [email, setEmail] = useState();
+    const [username, setUsername] = useState();
     const [password, setPassword] = useState();
 
     return (
@@ -39,22 +38,20 @@ function Loginpage() {
                 <fieldset>
                     <legend>INLOGGEN</legend>
                     <Textfield
-                        id="emailadres-field"
-                        name="email"
-                        title="Emailadres: "
+                        name="username"
+                        title="Gebruikersnaam: "
                         errors={errors}
                         register={register}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         validationRules={{
                             required: {
                                 value:true,
-                                message: "Emailadres moet ingevuld zijn!!!"
+                                message: "Gebruikersnaam moet ingevuld zijn!!!"
                             }
                         }}
                     />
                     <Textfield
-                        id="password-field"
                         name="password"
                         title="Wachtwoord: "
                         errors={errors}

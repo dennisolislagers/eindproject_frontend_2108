@@ -7,10 +7,10 @@ function Radiobutton ({ className="radiobutton-item", type="radio", name, id, va
             <label htmlFor={id} className={className}>
                 <input
                 {...register(name)}
+                checked={isChecked}
                 type={type}
                 id={id}
                 value={value}
-                checked={isChecked}
                 onChange={onChange}/>
             </label>
             {item}

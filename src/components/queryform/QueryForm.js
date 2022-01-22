@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react';
 import { useForm } from "react-hook-form";
-// import Radiobutton from "../radiobutton/Radiobutton";
 import Button from "../button/Button";
 import './QueryForm.css';
 import Dropbox from "../dropbox/Dropbox";
@@ -9,13 +8,9 @@ import {AuthenticatedContext} from "../../context/AuthenticatedContext"
 import Counter from "../counter/Counter";
 import Radiobutton from "../radiobutton/Radiobutton";
 
-
-const apiKey = '77cbcf9f1fa3d4f3c17a7c2f9abe2e8a'
-const apiId = '3fe16d27'
-
 function QueryForm ({setQueryHandler}) {
     const { register, handleSubmit } = useForm();
-    const [menuChoice, toggleMenuChoice] = useState ('');
+    const [menuChoice, toggleMenuChoice] = useState ('breakfast');
     const [dietChoice, setDietChoice] = useState('');
     const [healthChoice, setHealthChoice] = useState('');
     const [cuisineChoice, setCuisineChoice] = useState('');
@@ -23,14 +18,16 @@ function QueryForm ({setQueryHandler}) {
     const [maxCalorie, setMaxCalorie]= useState (1000);
     const { result } = useContext( ShowResultContext );
     const { user } = useContext(AuthenticatedContext)
-    const total = `${menuChoice}, ${dietChoice}, ${healthChoice}, ${cuisineChoice}`
-    const query = `https://api.edamam.com/api/recipes/v2?type=public&q=${total}&app_id=${apiId}&app_key=${apiKey}&calories=${minCalorie}-${maxCalorie}`
+    const total = `${menuChoice}, ${dietChoice}, ${healthChoice}, ${cuisineChoice}&calories=${minCalorie}-${maxCalorie}`
+    const query = `https://api.edamam.com/api/recipes/v2?type=public&q=${total}&app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_API_KEY}`
 
 
     function submitButton(data){
         setQueryHandler (query);
         handleSubmit(submitButton)
         console.log(data)
+        console.log(minCalorie)
+        console.log(maxCalorie)
         result()
     }
     return (
@@ -38,10 +35,11 @@ function QueryForm ({setQueryHandler}) {
             <form onSubmit={handleSubmit(submitButton)}>
                 <fieldset>
                     <legend>KEUZEMENU</legend>
-                    <h1>Hallo {user.username} Waar wil je een gerecht voor hebben?</h1>
+                    <h1>Hallo {user.id}, Waar wil je een gerecht voor hebben?</h1>
                     <label htmlFor="details-menuchoice" className="radiobutton-container">
                         <Radiobutton
                             register={register}
+                            isChecked="checked"
                             name="mealType"
                             id="details-breakfast"
                             value="breakfast"
@@ -51,7 +49,6 @@ function QueryForm ({setQueryHandler}) {
                         <Radiobutton
                             register={register}
                             name="mealType"
-                            id="details-lunch"
                             value="lunch"
                             onChange={(e) => toggleMenuChoice(e.target.value)}
                             item="LUNCH"
@@ -76,7 +73,6 @@ function QueryForm ({setQueryHandler}) {
                     </label>
 
                 <Dropbox
-                    onSubmit={handleSubmit(submitButton)}
                     htmlFor="details-dietdropbox"
                     header="Speciale Dieetwensen:  "
                     register={register}
@@ -92,7 +88,6 @@ function QueryForm ({setQueryHandler}) {
                     value6="low-sodium"     title6="Zoutarm"
                 />
                 <Dropbox
-                    onSubmit={handleSubmit(submitButton)}
                     htmlFor="details-healthdropbox"
                     header="Heb je Allergieën?"
                     register={register}
@@ -109,7 +104,6 @@ function QueryForm ({setQueryHandler}) {
 
                 />
                 <Dropbox
-                    onSubmit={handleSubmit(submitButton)}
                     htmlFor="details-cuisinedropbox"
                     header="Voorkeur voor een keuken?"
                     register={register}
@@ -120,12 +114,11 @@ function QueryForm ({setQueryHandler}) {
                     value1=" "              title1="Geen Voorkeur"
                     value2="chinese"     title2="Chinees"
                     value3="italian"   title3="Italiaans"
-                    value4="maxican"       title4="Mexicaans"
+                    value4="mexican"       title4="Mexicaans"
                     value5="japanese"        title5="Japans"
                     value6="kosher"     title6="Koosjer"
                 />
                     <Counter
-                        onSubmit={handleSubmit(submitButton)}
                         onChange={(e) => setMinCalorie(e.target.value)}
                         register={register}
                         name="min calories"
@@ -135,7 +128,6 @@ function QueryForm ({setQueryHandler}) {
                         setCounter={setMinCalorie}
                         />
                     <Counter
-                        onSubmit={handleSubmit(submitButton)}
                         onChange={(e) => setMaxCalorie(e.target.value)}
                         register={register}
                         name="max calories"

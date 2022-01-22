@@ -37,4 +37,22 @@ fieldset{
   align-items: center;
 }
 
+.loading-container{
+  text-align: center;
+  padding: 400px 0;
+}
+
+.loading-icon {
+  width: 200px;
+  height: 200px;
+  animation: rotating 1.5s linear infinite;
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 

@@ -10,23 +10,23 @@ function Subscribepage () {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory()
 
-
    async function onFormSubmit(data) {
         console.log(data)
 
         try{
-            await axios.post('http://localhost:3000/register',
+             await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup',
                 {
                     username: username,
                     email: email,
                     password: password,
+                    role: ["user"],
                 })
             history.push('/inloggen')
         }catch (e) {
             console.error(e)
+            console.log(e.response)
         }
     }
-        console.log(errors);
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');

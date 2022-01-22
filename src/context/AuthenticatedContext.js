@@ -2,6 +2,7 @@ import React, {createContext, useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import jwt_decode from 'jwt-decode'
 import axios from "axios";
+import zandloper from "../assets/logo zandloper.png"
 
 export const AuthenticatedContext = createContext({})
 
@@ -39,15 +40,13 @@ function AuthenticatedContextProvider ({children}) {
             isAuthenticated: true,
             user:{
                 email: decodedToken.email,
+                username:decodedToken.username,
                 id: decodedToken.sub,
             }
         })
-        console.log(decodedToken.sub)
         getUserData(decodedToken.sub, JWT)
         history.push('/menu')
     }
-
-
 
     function logout () {
         localStorage.clear()
@@ -62,7 +61,7 @@ function AuthenticatedContextProvider ({children}) {
     async function getUserData(id, token){
 
         try{
-            const result = await axios.get(`http://localhost:3000/600/users/${id}`,
+            const result = await axios.get(`https://frontend-educational-backend.herokuapp.com/api/user/${id}`,
                 {
                     "Content-Type":"application/json",
                     Authorization: `Bearer ${token}`,
@@ -73,12 +72,10 @@ function AuthenticatedContextProvider ({children}) {
                 user:{
                     email: result.data.email,
                     username: result.data.username,
-                    id: result.data.id,
+                    id: result.data.sub,
                 },
                 status:'done'
             });
-
-
 
         }catch(e) {
             console.error(e)
@@ -94,8 +91,8 @@ function AuthenticatedContextProvider ({children}) {
 
     return (
         <AuthenticatedContext.Provider value={data}>
-            {isAuthenticated.status === 'pending' ? children : <p>Laoding</p>}
-
+            {isAuthenticated.status === 'done' ? children : <div className="loading-container"><img className="loading-icon" src={zandloper} alt=""/></div>}
+            r
         </AuthenticatedContext.Provider>
     );
 }

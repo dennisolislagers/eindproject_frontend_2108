@@ -1,4 +1,7 @@
-article{
+label{
     display:flex;
     align-items: baseline;
+}
+label button{
+    border-radius: 50px;
 }
