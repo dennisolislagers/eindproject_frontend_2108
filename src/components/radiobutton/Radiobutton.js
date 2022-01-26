@@ -4,7 +4,7 @@ import './Radiobutton.css';
 function Radiobutton ({ className="radiobutton-item", type="radio", name, id, value, isChecked, onChange, register, item}) {
     return (
             <>
-            <label htmlFor={id} className={className}>
+            <div className={className}>
                 <input
                 {...register(name)}
                 checked={isChecked}
@@ -12,7 +12,7 @@ function Radiobutton ({ className="radiobutton-item", type="radio", name, id, va
                 id={id}
                 value={value}
                 onChange={onChange}/>
-            </label>
+            </div>
             {item}
             </>
     );

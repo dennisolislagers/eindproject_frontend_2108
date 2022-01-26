@@ -1,23 +1,23 @@
 import React from 'react';
 import './Counter.css'
 
-function Counter ({htmlFor, title, register, name, counter, setCounter, onChange}) {
+function Counter ({htmlFor, title, register, name, counter, setCounter, onChange,}) {
     return (
-        <label htmlFor={htmlFor} >
-            <h2>{title}</h2>
+        <label htmlFor={htmlFor}>
+            <p>{title}</p>
             <input
+            onChange={onChange}
             type="text"
             {...register(name)}
-            value={counter}
-            onChange={onChange}/>
-            <button
+            value={counter}/>
+            <button id="counter-button"
             type="button"
             disabled={counter === 0}
             onClick={() => setCounter (counter - 20)}
             >
                 -
             </button>
-            <button
+            <button id="counter-button"
             type="button"
             disabled={counter === 0}
             onClick={() => setCounter (counter + 20)}

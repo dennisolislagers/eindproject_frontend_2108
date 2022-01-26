@@ -18,8 +18,8 @@ function QueryForm ({setQueryHandler}) {
     const [maxCalorie, setMaxCalorie]= useState (1000);
     const { result } = useContext( ShowResultContext );
     const { user } = useContext(AuthenticatedContext)
-    const total = `${menuChoice}, ${dietChoice}, ${healthChoice}, ${cuisineChoice}&calories=${minCalorie}-${maxCalorie}`
-    const query = `https://api.edamam.com/api/recipes/v2?type=public&q=${total}&app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_API_KEY}`
+
+    const query = `https://api.edamam.com/api/recipes/v2?type=public&q=${menuChoice}&app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_API_KEY}&diet=${dietChoice}&health=${healthChoice}&cuisineType=${cuisineChoice}&calories=${minCalorie}-${maxCalorie}`
 
 
     function submitButton(data){
@@ -61,15 +61,15 @@ function QueryForm ({setQueryHandler}) {
                             onChange={(e) => toggleMenuChoice(e.target.value)}
                             item="AVONDETEN"
                         />
-                        <Radiobutton
-                            className="snack-item"
-                            register={register}
-                            name="mealType"
-                            id="details-snack"
-                            value="snack"
-                            onChange={(e) => toggleMenuChoice(e.target.value)}
-                            item="SNACK"
-                        />
+                    {/*    <Radiobutton*/}
+                    {/*        className="snack-item"*/}
+                    {/*        register={register}*/}
+                    {/*        name="mealType"*/}
+                    {/*        id="details-snack"*/}
+                    {/*        value="snack"*/}
+                    {/*        onChange={(e) => toggleMenuChoice(e.target.value)}*/}
+                    {/*        item="SNACK"*/}
+                    {/*    />*/}
                     </label>
 
                 <Dropbox
@@ -96,11 +96,11 @@ function QueryForm ({setQueryHandler}) {
                     choice={healthChoice}
                     onChange={(e) => setHealthChoice(e.target.value)}
                     value1=" "              title1="Geen"
-                    value2="diary-free"     title2="Melk"
-                    value3="gluten-free"    title3="Gluten"
-                    value4="peanut-free"    title4="Pinda's"
-                    value5="egg-free"       title5="Eieren"
-                    value6="selery-free"    title6="selderievrij"
+                    value2="diary-free"     title2="Koemelk-allergie"
+                    value3="gluten-free"    title3="Gluten-allergie"
+                    value4="peanut-free"    title4="Pinda-allergie"
+                    value5="egg-free"       title5="Eieren-allergie"
+                    value6="shelfish-free"    title6="Schaaldier-allergie"
 
                 />
                 <Dropbox
@@ -112,26 +112,24 @@ function QueryForm ({setQueryHandler}) {
                     choice={cuisineChoice}
                     onChange={(e) => setCuisineChoice(e.target.value)}
                     value1=" "              title1="Geen Voorkeur"
-                    value2="chinese"     title2="Chinees"
-                    value3="italian"   title3="Italiaans"
-                    value4="mexican"       title4="Mexicaans"
-                    value5="japanese"        title5="Japans"
-                    value6="kosher"     title6="Koosjer"
+                    value2="chinese"     title2="Chinese keuken"
+                    value3="italian"   title3="Italiaanse keuken"
+                    value4="mexican"       title4="Mexicaanse keuken"
+                    value5="japanese"        title5="Japanse keuken"
+                    value6="french"     title6="Franse keuken"
                 />
                     <Counter
                         onChange={(e) => setMinCalorie(e.target.value)}
                         register={register}
                         name="min calories"
-                        value={minCalorie}
                         title="minimaal aantal calorieën"
                         counter={minCalorie}
                         setCounter={setMinCalorie}
                         />
                     <Counter
-                        onChange={(e) => setMaxCalorie(e.target.value)}
+                        onChange={(e) => setMaxCalorie(e.target.counter)}
                         register={register}
                         name="max calories"
-                        value={maxCalorie}
                         title="maximaal aantal calorieën"
                         counter={maxCalorie}
                         setCounter={setMaxCalorie}

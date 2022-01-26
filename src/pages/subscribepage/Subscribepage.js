@@ -24,16 +24,21 @@ function Subscribepage () {
             history.push('/inloggen')
         }catch (e) {
             console.error(e)
-            console.log(e.response)
+            console.log(e.response.data)
+            toggleError(true)
         }
     }
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, toggleError] = useState(false);
+    const [conditionChecked, toggleConditionChecked] = useState(false)
+
 
     return (
         <div className="page-container">
+
             <form onSubmit={handleSubmit(onFormSubmit)}>
                 <fieldset>
             <legend>REGISTREREN</legend>
@@ -79,12 +84,22 @@ function Subscribepage () {
                         }
                         }}
                     />
+
+                    <label htmlFor="details-checked">
+                        <input
+                            type="checkbox"
+                            value={conditionChecked}
+                            {...register("checked")}
+                            onChange={(e) => toggleConditionChecked(e.target.value)}
+                          />
+                            Ik schrijf me in voor de nieuwsbrief
+                    </label>
                     <Button
                         type="submit"
                         title="Registreren"
                     />
+                    {error && <h3>Gebruikersnaam is al in gebruik </h3>}
                 </fieldset>
-
             </form>
 
         </div>
