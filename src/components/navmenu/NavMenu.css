@@ -1,13 +1,22 @@
 nav {
-    font-size: 20px;
-    display: flex;
-    justify-content: space-between;
-    background-color: cornsilk;
-    margin: 30px 200px 30px 200px;
+    font-size:24px;
     padding: 20px;
-    border-radius: 10px;
-    align-items: center;
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+nav p{
+    display:flex;
+    text-align: center;
 }
 .link-button{
     margin: 12px;
+    color: darkviolet;
+}
+.link-button:hover{
+    color:black;
+}
+.fas{
+    font-size:32px;
+    margin:0 25px 0 25px;
 }

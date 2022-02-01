@@ -3,14 +3,9 @@ import Button from "../../components/button/Button";
 import './Resultpage.css'
 import axios from "axios";
 import QueryForm from "../../components/queryform/QueryForm";
-// import Result from "../../components/result/Result";
 import roundedNumbers from "../../helpers/roundedNumbers";
 import { ShowResultContext} from "../../context/ShowResultContext";
 import zandloper from "../../assets/logo zandloper.png"
-
-
-
-
 
 function Resultpage () {
     const [menuData, setMenuData] = useState('');
@@ -30,6 +25,7 @@ function Resultpage () {
             try {
                 const result = await axios.get(query);
                 console.log(result.data);
+                console.log(result.data.hits)
                 setMenuData(result.data);
             } catch (e) {
                 console.error(e);
@@ -41,47 +37,60 @@ function Resultpage () {
 
         fetchData()
     }
+    else{
+        return (
+            "Geen resultaat, probeer opnieuw"
+        )
+        }
     }, [query])
 
     return (
-        <div className="page-container">
+        <div >
             {!showResult ?
-                <div>
+                <div className="page-container">
                     <QueryForm setQueryHandler={setQuery}/>
                 </div>
                 :
                 <>
-                    <fieldset>
-                        <legend>RESULTATEN</legend>
                     <div>
                         {error && <p>Er is iets misgegaan, sluit af en start opnieuw op </p>}
-                        {loading && <img className="loading-icon" src={zandloper} alt=""/>}
+                        {loading && <div className="loading-container"><img className="loading-icon" src={zandloper} alt=""/></div>}
                     </div>
-
-                <div className="resultpage-container">
                     {menuData &&
-                    menuData.hits.map((recipe) => {
+                    menuData.hits.slice(0, 1).map((recipe) => {
                         return (
-                            <div className='result-item' key={recipe.recipe.label}>
-                                <h3>{recipe.recipe.label}</h3>
-                                <a href={recipe.recipe.url}>LINK NAAR PAGINA</a>
-                                <img src={recipe.recipe.image} alt={recipe.recipe.label}/>
-                                <p>Calorieën: {roundedNumbers(recipe.recipe.calories)}</p>
-                                <p>Bron: {recipe.recipe.source}</p>
+                            <div key={recipe.recipe.label} className="resultpage-container">
+                                <header id="item-header">{recipe.recipe.label}</header>
+                                <img id="item-image"src={recipe.recipe.image} alt={recipe.recipe.label}/>
+                                <a id="item-link" href={recipe.recipe.url}>LINK NAAR PAGINA</a>
+                                <p id="item-calorie">Calorieën per portie: {roundedNumbers(recipe.recipe.calories/recipe.recipe.yield)}</p>
+                                <p id="item-source">Bron: {recipe.recipe.source}</p>
+                                <div id="item-ingredients"><h3>INGREDIENTS:</h3> <p>{recipe.recipe.ingredientLines.map((ingredients) =>{
+                                     return(
+                                        <li>{ingredients}</li>
+                                     )
+                                        })}
+                                    </p>
+                                </div>
+                                <div id="item-labels"><h3>HEALTHLABELS</h3><p>{recipe.recipe.healthLabels.map((labels) => {
+                                    return(
+                                        <li>{labels} </li>
+                                    )
+                                        })}
+                                    </p>
+                                </div>
+
+                                <div id="item-button">
+                                    <Button
+                                        type="button"
+                                        onClick={goToMainMenuPage}
+                                        title="KEUZEMENU"
+                                    />
+                                </div>
                             </div>
                         )
                     })}
 
-                </div>
-                    <Button
-                        type="button"
-                        onClick={goToMainMenuPage}
-                        title="KEUZEMENU"/>
-                    <Button
-                        onClick={() => setQuery(menuData._links.next.href)}
-                        title="Volgende 20"
-                    />
-                    </fieldset>
                 </>}
         </div>   )
     }

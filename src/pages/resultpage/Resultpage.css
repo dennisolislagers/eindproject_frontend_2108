@@ -1,42 +1,73 @@
-.healthLabels{
-    padding: 20px;
-    border: 20px;
-    list-style: none;
-}
-.result-container{
-    background-color: chocolate;
-   text-align: center;
-    /*padding:20px;*/
-    /*border:20px;*/
-    width: 400px;
-}
 .resultpage-container{
-    display: flex;
-    align-items: baseline;
-    align-content: flex-start;
-    justify-content: center;
-    padding: 20px;
-    flex-wrap: wrap;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, auto);
+    grid-template-areas:
+    "header header header"
+    "image ingredients labels"
+    "link ingredients labels"
+    "calorie ingredients labels"
+    "source ingredients labels"
+    "button button button";
+    padding: 10px;
+    color: darkviolet;
 }
-.result-item{
-    width: 20%;
-    height: 480px;
+#item-header {
+    grid-area: header;
+    padding:20px;
+    text-align: center;
+    font-size: 24px;
+}
+#item-image {
+    grid-area: image;
     padding: 20px;
-    color: white;
-    background-color:chocolate;
-    margin: 10px;
-    border-radius: 10px;
+}
+
+#item-link{
+    grid-area: link;
+    text-align: center;
+    color: darkviolet;
+    padding: 10px;
+}
+#item-calorie{
+    grid-area: calorie;
+    text-align: center;
+    color: darkviolet;
+}
+#item-source{
+    grid-area: source;
+    text-align: center;
+    color: darkviolet;
+}
+#item-button{
+    grid-area: button;
     text-align: center;
 }
+#item-ingredients{
+    grid-area: ingredients;
+    padding: 20px;
+    list-style: square;
+}
+#item-labels{
+    grid-area: labels;
+    padding: 20px;
+    list-style: none;
+}
 
-img{
-    border-radius: 10px;
-    width: 100%;
-}
-.result-item a:hover{
-    color:black;
-}
-.result-item a{
-    color:white;
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

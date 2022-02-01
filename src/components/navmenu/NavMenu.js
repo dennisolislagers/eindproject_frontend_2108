@@ -18,16 +18,18 @@ function NavMenu () {
 
     return (
         <nav>
-            <NavLink to="/" exact activeClassName="home-container">Home</NavLink>
+            <NavLink className="link-button" to="/" ><i className="fas fa-home"> </i></NavLink>
+
+                <p>WAT ETEN WE VANDAAG?</p>
               <span>
                   {isAuthenticated ?
                     <>
-                    <NavLink className="link-button" to="/" onClick= {logoutButton} >Uitloggen</NavLink>
+                    <NavLink className="link-button" to="/" onClick= {logoutButton} ><i className="fas fa-sign-out-alt"></i></NavLink>
                     </>
                     :
                     <>
-                    <NavLink className="link-button" to="/inloggen" >Inloggen</NavLink>
-                    <NavLink className="link-button" to="/inschrijven" >Registreren</NavLink>
+                    <NavLink className="link-button" to="/inloggen" ><i className="fas fa-sign-in-alt"> </i></NavLink>
+                    <NavLink className="link-button" to="/inschrijven" ><i className="fas fa-user-plus"> </i></NavLink>
                     </>
                 }
               </span>

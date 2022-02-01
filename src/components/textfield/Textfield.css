@@ -1,13 +1,19 @@
-input {
-    background-color: cornsilk;
-    font-size: 24px;
-    border-radius: 10px;
-    border-style: none;
+.textfield-container{
+    /*color:darkviolet;*/
+    /*font-size: 24px;*/
+    margin: 5px;
     padding:10px;
-    width:25%;
-    height: 40px;
+    width:auto;
+    display:flex;
+   align-items: baseline;
+    justify-content: center;
 }
-label {
-    font-size: 24px;
+.textfield-container input{
+    border-style: none;
+    width:240px;
+    margin:10px;
+    height: 32px;
 }
+
+
 

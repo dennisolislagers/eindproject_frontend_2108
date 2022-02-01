@@ -1,20 +1,18 @@
 import React from 'react';
 import './Radiobutton.css';
 
-function Radiobutton ({ className="radiobutton-item", type="radio", name, id, value, isChecked, onChange, register, item}) {
+function Radiobutton ({ className="radiobutton-item", type="radio", name, id, value, register, item}) {
     return (
-            <>
-            <div className={className}>
+            <div id={className}>
+            <label htmlFor={id}>
                 <input
                 {...register(name)}
-                checked={isChecked}
                 type={type}
                 id={id}
-                value={value}
-                onChange={onChange}/>
+                value={value}/>
+            </label>
+            <h3>{item}</h3>
             </div>
-            {item}
-            </>
     );
 };
 

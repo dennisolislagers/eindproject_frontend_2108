@@ -18,18 +18,19 @@ function Homepage () {
 
 
     return (
-        <div className="page-container">
-            <h1>WAT ETEN WE VANDAAG</h1>
-            <h2>Welkom op mijn webpagina.</h2>
-            <p>Ik ben Dennis Olislagers en in mijn vrije tijd doe ik heel graag koken.</p>
-            <p>Heel vaak kom ik thuis na het werken en weet ik niet goed welk eten ik moet gaan bereiden.</p>
-            <p>Omdat ik hierover ook vaak discussies heb met mijn vriendin ben ik op het idee gekomen om eem webpagina te maken die deze keuze voor mij maakt.</p>
-            <p>Door al dit eten komt het nog wel eens voor dat je een kilootje bijkomt, hierdoor heb ik gedacht dat als ik deze webpagina ga maken er ook keuzes gemaakt kunnen worden voor iemand die een speciaal dieet heeft.</p>
-            <p>Mijn vriendin en ik lusten eigenlijk alles maar er zijn natuurlijk ook mensen die ietwat kieskeuriger zijn en hier wil ik uiteraard rekening mee houden.</p>
-            <p>Met deze mensen heb ik in mijn webpagina ook rekening gehouden en hierdoor kun je een keuze maken om ingrediënten weg te laten die je niet lekker vindt.</p>
-            <p>Ik zou zeggen, log in of schrijf je in en ga op ontdekkingstocht op mijn webpagina.</p>
-            <p>Als je het een leuke webpagina vindt vind ik het heel erg leuk als je een opmerking achter laat op de pagina.</p>
+        <div id="homepage-container">
+            <h2>Welkom op mijn webapplicatie.</h2>
+            <p>Mijn naam is Dennis Olislagers, ik woon in de mooie stad Maastricht samen met mijn vriendin en hond.</p>
+            <p>Heel vaak komt het voor dat ik na een dag werken thuis kom en dan moet er nog eten gemaakt worden.</p>
+            <p>Op dat moment komt de veel gestelde vraag: wat eten we vandaag???</p>
+            <p>Omdat de keuze tegenwoordig enorm is ontstaat er vaak keuzestress en om deze keuzestress weg te nemen heb ik deze applicatie gemaakt welke de keuze voor jou maakt.</p>
+            <p>De applicatie kan voor jou een random gerecht uitzoeken, de enige verplichte keuze die gemaakt moet worden is of het een ontbijt, lunch of avondeten betreft.</p>
+            <p>Omdat niet iedereen even avontuurlijk is ingesteld heb ik diverse mogelijkheden ingebouwd waardoor je zelf invloed hebt op de keuze die de applicatie maakt.</p>
+            <p>Als je nieuwsgierig bent geworden, registreer jezelf en ga aan de slag en vergeet je niet aan te melden voor de nieuwsbrief voor leuke weetjes.</p>
+            <p>Vindje de applicatie leuk of heb je ander commentaar, stuur me een berichtje via de contactmail.</p>
             <p>Ook sta ik altijd open voor commentaar dus als er iets is dat je mist of beter kan mag je ook altijd achterlaten</p>
+                <br/>
+                <p>VEEL KOOKPLEZIER</p>
             <br/>
                 {isAuthenticated ?
                 <>

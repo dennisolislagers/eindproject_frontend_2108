@@ -1,8 +1,13 @@
-.radiobutton-container{
-    display:flex;
-    align-items: center;
-}
 
-.radiobutton-container input{
-width:30px;
+.queryform-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.radiobutton-container{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }

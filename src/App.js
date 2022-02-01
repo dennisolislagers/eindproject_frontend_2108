@@ -6,16 +6,43 @@ import Loginpage from './pages/loginpage/Loginpage';
 import Subscribepage from './pages/subscribepage/Subscribepage';
 import './App.css';
 import Resultpage from "./pages/resultpage/Resultpage";
-
 import { AuthenticatedContext } from "./context/AuthenticatedContext";
-
+import Footer from "./components/footer/Footer";
+import kookhuis from "./assets/kookhuis.jpeg"
+import oilandvinegar from "./assets/logo oil and vinegar.jpeg"
+import bbqshoplimburg from "./assets/bbqshoplimburg.png"
+import dilleenkamille from "./assets/dille-en-kamille-logo.jpeg"
+import albertheyn from "./assets/logo_albert-heyn.png"
+import jumbo from "./assets/jumbo.png"
 
 function App() {
     const { isAuthenticated } = useContext(AuthenticatedContext)
     return (
-        <>
+        <div className="app-container">
+            <div id="item-navmenu">
             <NavMenu />
-            <Switch>
+            </div>
+            <div className="item-add" id="add1">
+                <img src={kookhuis} alt=""/>
+                <a href="https://www.kookwinkel.nl/dochterwinkel-kookhuis-aan-de-maes"></a>
+            </div>
+            <div className="item-add" id="add2">
+                <a href="https://www.oilvinegar.nl/"><img src={oilandvinegar} alt=""/></a>
+            </div>
+            <div className="item-add" id="add3">
+                <a href="https://www.bbqshoplimburg.nl/"><img src={bbqshoplimburg} alt=""/></a>
+            </div>
+            <div className="item-add" id="add4">
+                <a href="https://www.dille-kamille.nl/"><img src={dilleenkamille} alt=""/></a>
+            </div>
+            <div className="item-add" id="add5">
+                <a href="https://www.ah.nl/"><img src={albertheyn} alt=""/></a>
+            </div>
+            <div className="item-add" id="add6">
+                <a href="https://www.jumbo.com/"><img src={jumbo} alt=""/></a>
+            </div>
+            <div className="item" id="item-switch">
+            <Switch >
                 <Route exact path="/">
                     <HomePage />
                 </Route>
@@ -29,10 +56,11 @@ function App() {
                     { isAuthenticated ? <Resultpage /> : <Redirect to="/"/>}
                 </Route>
             </Switch>
-                <footer className="footer-container">
-                    <div id="edamam-badge" data-color="transparant"> </div>
-                </footer>
-        </>
+            </div >
+            <div id="item-footer">
+                <Footer />
+            </div>
+        </div>
 );
 }
 

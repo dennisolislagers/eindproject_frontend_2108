@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
 import Textfield from "../../components/textfield/Textfield";
 import './Subscribepage.css'
-import { useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import Button from "../../components/button/Button";
 import axios from "axios";
+import Checkbox from "../../components/checkbox/Checkbox";
 
 function Subscribepage () {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory()
+
 
    async function onFormSubmit(data) {
         console.log(data)
@@ -16,92 +18,89 @@ function Subscribepage () {
         try{
              await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup',
                 {
-                    username: username,
-                    email: email,
-                    password: password,
-                    role: ["user"],
+                    username: data.username,
+                    email: data.email,
+                    password: data.password,
+                    info:data.newsletter,
                 })
             history.push('/inloggen')
         }catch (e) {
             console.error(e)
-            console.log(e.response.data)
-            toggleError(true)
+            console.log(e.response)
         }
     }
 
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, toggleError] = useState(false);
-    const [conditionChecked, toggleConditionChecked] = useState(false)
-
-
     return (
-        <div className="page-container">
+        <div className="subscribepage-container">
 
             <form onSubmit={handleSubmit(onFormSubmit)}>
-                <fieldset>
-            <legend>REGISTREREN</legend>
+
+            <h1>REGISTREREN</h1>
+                <p>Hier kun je jezelf registreren waarna je kunt inloggen op de inlogpagina.</p>
+                <p>Als je al geregistreerd bent, klik <Link to ="/inloggen">HIER</Link> om naar de inlogpagins te gaan.</p>
                     <Textfield
+                        id="details-username"
                         name="username"
                         title="Gebruikersnaam:  "
                         errors={errors}
                         register={register}
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
                         validationRules={{
+                            minLength: {
+                                value: 6,
+                                message: "De gebruikersnaam moet 6 tekens bevatten !!!!"
+                            },
                             required: {
-                                minLength: 6,
-                                message: "De gebruikersnaam moet minimaal 6 tekens bevatten!!!"
-                        }
+                                value:true,
+                                message: "De gebruikersnaam moet ingevuld zijn!!!"
+                            },
                         }}
                     />
                     <Textfield
+                        id="details-email"
+                        type="email"
                         name="email"
                         title="Emailadres:  "
                         errors={errors}
                         register={register}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
                         validationRules={{
                             required: {
                                 value:true,
-                                message: "Emailadres moet ingevuld zijn!!!"
-                            }
+                                message: "Het emailadres moet ingevuld zijn!!!"
+                            },
+                                validate: (value) => value.includes("@"),
+                                message:"Het emailadres is niet juist ingevuld"
                         }}
                         />
                     <Textfield
+                        id="details-password"
                         name="password"
                         title="Wachtwoord:  "
                         errors={errors}
                         register={register}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
                         validationRules={{
                             minLength: {
                                 value: 6,
                                 message: "Het wachtwoord moet 6 tekens bevatten !!!!"
-                        }
+                        },
+                            required: {
+                                value:true,
+                                message: "Het wachtwoord moet ingevuld zijn!!!"
+                            },
                         }}
                     />
-
-                    <label htmlFor="details-checked">
-                        <input
-                            type="checkbox"
-                            value={conditionChecked}
-                            {...register("checked")}
-                            onChange={(e) => toggleConditionChecked(e.target.value)}
-                          />
-                            Ik schrijf me in voor de nieuwsbrief
-                    </label>
+                    {/*{errors && <p>{e.response.data}</p>}*/}
+                    <Checkbox
+                        id="details-checkbox"
+                        name="newsletter"
+                        register={register}
+                        value="true"
+                        title="Ik schrijf me in voor de nieuwsbrief"
+                    />
                     <Button
                         type="submit"
                         title="Registreren"
                     />
-                    {error && <h3>Gebruikersnaam is al in gebruik </h3>}
-                </fieldset>
             </form>
-
         </div>
     );
 }

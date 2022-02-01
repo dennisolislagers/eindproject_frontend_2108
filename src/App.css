@@ -1,40 +1,97 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
-
 body {
   background: url("./assets/background_homepage.jpeg");
   background-size:cover;
-  font-family: 'Quicksand', 'Arial', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-container{
+  padding: 30px;
+  column-gap: 20px;
+  row-gap: 20px;
+  display:grid;
+  grid-template-columns: repeat(3, 3fr);
+  grid-template-rows: 50px auto auto auto 50px;
+  grid-template-areas:
+  "navmenu navmenu navmenu"
+  "add1 add2 add3"
+  "switch switch switch"
+  "add4 add5 add6"
+  "footer footer footer"
+;
+}
+
+@media screen and (min-width: 576px) {
+.app-container{
+  display:grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 100px repeat(3, auto) 100px;
+  grid-template-areas:
+  "navmenu navmenu navmenu navmenu navmenu navmenu"
+  "add1 switch switch switch switch add4"
+  "add2 switch switch switch switch add5"
+  "add3 switch switch switch switch add6"
+  "footer footer footer footer footer footer";
+
+  }
+}
+.item {
   color: white;
-}
-
-.page-container {
-  margin: 30px 200px 30px 200px;
-  text-align: center;
-  background-color:cornsilk;
-  padding:25px;
-  border-radius: 10px;
-  color: darkviolet;
-}
-
-.footer-container{
   display: flex;
-  justify-content: flex-end;
-  background-color:cornsilk;
-  padding:25px;
-  margin: 30px 200px 30px 200px;
-  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+.item-add {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  width: 100%;
+}
+.item-add:hover{
+  opacity: 0.5;
 }
 
-fieldset{
-  border: 2px solid darkviolet;
-  border-radius: 10px;
-  background-color: white;
-  padding: 25px;
-  margin: 50px;
-  display:flex;
-  flex-direction: column;
+#item-navmenu{
+  grid-area: navmenu;
+  background-color: cornsilk;
+  color:darkviolet;
   align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+}
+#item-switch{
+  grid-area: switch;
+  padding: 10px;
+  background-color: cornsilk;
+  color:darkviolet;
+}
+#item-footer {
+  grid-area: footer;
+  padding: 10px;
+  background-color: cornsilk;
+  color: darkviolet;
+  text-align: center;
+}
+#item-add1{
+  grid-area: add1;
+}
+#item-add2{
+  grid-area: add2;
+}
+#item-add3{
+  grid-area: add2;
+}
+#item-add4{
+   grid-area: add2;
+ }
+#item-add5{
+  grid-area: add2;
+}
+#item-add6{
+  grid-area: add2;
 }
 
 .loading-container{

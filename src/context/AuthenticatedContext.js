@@ -44,7 +44,6 @@ function AuthenticatedContextProvider ({children}) {
                 id: decodedToken.sub,
             }
         })
-        getUserData(decodedToken.sub, JWT)
         history.push('/menu')
     }
 
@@ -79,6 +78,13 @@ function AuthenticatedContextProvider ({children}) {
 
         }catch(e) {
             console.error(e)
+
+            toggleIsAuthenticated({
+                ...isAuthenticated,
+                isAuth: false,
+                user: null,
+                status: 'done'
+            });
         }
     }
 
