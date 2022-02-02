@@ -4,8 +4,8 @@ import './Footer.css'
 function Footer(){
     return (
         <div className="footer-container">
-            <div>contact: dennis.olislagers@gmail.com</div>
-            <div id="edamam-badge" data-color="transparant"> </div>
+            <a className="link-button" href="mailto:dennis.olislagers@gmail.com"><i className="fas fa-envelope"> </i></a>
+            <div id="edamam-badge" data-color="transparent"> </div>
         </div>
     );
 };

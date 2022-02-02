@@ -88,7 +88,7 @@ function Subscribepage () {
                             },
                         }}
                     />
-                    {/*{errors && <p>{e.response.data}</p>}*/}
+                    {/*{errors && <p>{errors.response.data}</p>}*/}
                     <Checkbox
                         id="details-checkbox"
                         name="newsletter"

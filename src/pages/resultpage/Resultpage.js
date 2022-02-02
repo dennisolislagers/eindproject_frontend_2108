@@ -34,7 +34,6 @@ function Resultpage () {
             toggleLoading(false);
         }
     if (query) {
-
         fetchData()
     }
     else{

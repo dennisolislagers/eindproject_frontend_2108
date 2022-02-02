@@ -1,6 +1,7 @@
 
-#Welkom bij de applicatie Wat Eten We Vandaag
-Een webapplicatie waar je aan de hand van een aantal keuzes een gerecht krijgt..
+#Wat Eten We Vandaag
+Een webapplicatie waar je aan de hand van een aantal keuzes een gerecht krijgt.
+[demo hier](https://dennisolislagers.github.io/eindproject_frontend_2108/)
 
 
 ## Starten applicatie
@@ -24,12 +25,7 @@ Deze key en ID kunnen aangemaakt worden op [API edamam ](https://www.edamam.com/
 
 #Verantoordingsdocument.
 
-##Technologiën die gebruikt zijn:
-- React.
-- CSS.
-- Flexbox.
-- API van Edamam (www.edamam.com/).
-- Grid
+
 
 ##De beperkingen van de applicatie.
 - Omdat er gebruik wordt gemaakt van een API ben je afhankelijk van de gegevens die terug worden gegeven vanuit deze API.
@@ -39,4 +35,15 @@ kan door een eigen backend vermeden worden.
 
 ##Verdere ontwikkelingen.
 - Als er een eigen backend voorhanden is kan het gehele recept aan de gebruiker worden getoond en ben je niet afhankelijk van de API.
+- Bij het gebruik van een eigen API heb je meer controle over wat je de gebruiker wilt laten zien.
 - De mogelijkheid om een boodschappenlijst uit te printen en deze ook aan te passen naar het aantal personen.
+
+
+##Technologiën die gebruikt zijn:
+- React.
+- CSS-flexbox.
+- CSS GRID
+- API van Edamam (www.edamam.com/).
+
+De gegevenspagina heb ik niet gemaakt, in plaats daarvan heb ik de naam van de gebruiker boven het keuzemenu gezet.
+De techniek is hetzelfde als de gebruiker zijn gegevens te laten zien, alleen laat ik iets minder gegevens zien.

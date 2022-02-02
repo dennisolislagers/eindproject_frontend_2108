@@ -23,23 +23,22 @@ function App() {
             <NavMenu />
             </div>
             <div className="item-add" id="add1">
-                <img src={kookhuis} alt=""/>
-                <a href="https://www.kookwinkel.nl/dochterwinkel-kookhuis-aan-de-maes"></a>
+                <a href="https://www.kookwinkel.nl/dochterwinkel-kookhuis-aan-de-maes"><img src={kookhuis} alt="add1"/></a>
             </div>
             <div className="item-add" id="add2">
-                <a href="https://www.oilvinegar.nl/"><img src={oilandvinegar} alt=""/></a>
+                <a href="https://www.oilvinegar.nl/"><img src={oilandvinegar} alt="add2"/></a>
             </div>
             <div className="item-add" id="add3">
-                <a href="https://www.bbqshoplimburg.nl/"><img src={bbqshoplimburg} alt=""/></a>
+                <a href="https://www.bbqshoplimburg.nl/"><img src={bbqshoplimburg} alt="add3"/></a>
             </div>
             <div className="item-add" id="add4">
-                <a href="https://www.dille-kamille.nl/"><img src={dilleenkamille} alt=""/></a>
+                <a href="https://www.dille-kamille.nl/"><img src={dilleenkamille} alt="add4"/></a>
             </div>
             <div className="item-add" id="add5">
-                <a href="https://www.ah.nl/"><img src={albertheyn} alt=""/></a>
+                <a href="https://www.ah.nl/"><img src={albertheyn} alt="add5"/></a>
             </div>
             <div className="item-add" id="add6">
-                <a href="https://www.jumbo.com/"><img src={jumbo} alt=""/></a>
+                <a href="https://www.jumbo.com/"><img src={jumbo} alt="add6"/></a>
             </div>
             <div className="item" id="item-switch">
             <Switch >
