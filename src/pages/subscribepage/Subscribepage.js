@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
 import Textfield from "../../components/textfield/Textfield";
 import './Subscribepage.css'
@@ -10,11 +10,11 @@ import Checkbox from "../../components/checkbox/Checkbox";
 function Subscribepage () {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory()
+    const [error, toggleError] = useState("")
 
 
    async function onFormSubmit(data) {
         console.log(data)
-
         try{
              await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup',
                 {
@@ -26,7 +26,8 @@ function Subscribepage () {
             history.push('/inloggen')
         }catch (e) {
             console.error(e)
-            console.log(e.response)
+            console.log(e.response.data)
+            toggleError(e.response.data);
         }
     }
 
@@ -88,7 +89,7 @@ function Subscribepage () {
                             },
                         }}
                     />
-                    {/*{errors && <p>{errors.response.data}</p>}*/}
+                    {error && <p>{error}</p>}
                     <Checkbox
                         id="details-checkbox"
                         name="newsletter"

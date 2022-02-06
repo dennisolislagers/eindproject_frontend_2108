@@ -25,7 +25,7 @@ function Resultpage () {
             try {
                 const result = await axios.get(query);
                 console.log(result.data);
-                console.log(result.data.hits)
+                console.log(result.data.hits);
                 setMenuData(result.data);
             } catch (e) {
                 console.error(e);
@@ -36,11 +36,7 @@ function Resultpage () {
     if (query) {
         fetchData()
     }
-    else{
-        return (
-            "Geen resultaat, probeer opnieuw"
-        )
-        }
+
     }, [query])
 
     return (
@@ -61,10 +57,10 @@ function Resultpage () {
                             <div key={recipe.recipe.label} className="resultpage-container">
                                 <header id="item-header">{recipe.recipe.label}</header>
                                 <img id="item-image"src={recipe.recipe.image} alt={recipe.recipe.label}/>
-                                <a id="item-link" href={recipe.recipe.url}>LINK NAAR PAGINA</a>
+                                <a id="item-link" href={recipe.recipe.url}>Bron: {recipe.recipe.source}</a>
                                 <p id="item-calorie">Calorieën per portie: {roundedNumbers(recipe.recipe.calories/recipe.recipe.yield)}</p>
-                                <p id="item-source">Bron: {recipe.recipe.source}</p>
-                                <div id="item-ingredients"><h3>INGREDIENTS:</h3> <p>{recipe.recipe.ingredientLines.map((ingredients) =>{
+                                <p id="item-source"> </p>
+                                <div id="item-ingredients"><h3>INGREDIENTS:</h3> <p>Voor {recipe.recipe.yield} Personen</p><p>{recipe.recipe.ingredientLines.map((ingredients) =>{
                                      return(
                                         <li>{ingredients}</li>
                                      )
@@ -78,19 +74,20 @@ function Resultpage () {
                                         })}
                                     </p>
                                 </div>
-
-                                <div id="item-button">
-                                    <Button
-                                        type="button"
-                                        onClick={goToMainMenuPage}
-                                        title="KEUZEMENU"
-                                    />
-                                </div>
                             </div>
                         )
                     })}
-
+                    <div id="item-button">
+                        <Button
+                            type="button"
+                            onClick={goToMainMenuPage}
+                            title="KEUZEMENU"
+                        />
+                    </div>
                 </>}
+
         </div>   )
+
+
     }
 export default Resultpage;

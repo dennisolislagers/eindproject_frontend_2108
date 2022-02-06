@@ -10,7 +10,7 @@ body {
   column-gap: 20px;
   row-gap: 20px;
   display:grid;
-  grid-template-columns: repeat(3, 3fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 50px auto auto auto 50px;
   grid-template-areas:
   "navmenu navmenu navmenu"
@@ -25,55 +25,42 @@ body {
 .app-container{
   display:grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 100px repeat(3, auto) 100px;
+  grid-template-rows: 100px repeat(3, 1fr) 100px;
   grid-template-areas:
   "navmenu navmenu navmenu navmenu navmenu navmenu"
   "add1 switch switch switch switch add4"
   "add2 switch switch switch switch add5"
   "add3 switch switch switch switch add6"
   "footer footer footer footer footer footer";
-
   }
 }
 .item {
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
+  background-color: cornsilk;
+  color:darkviolet;
+
 }
 .item-add {
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px;
-  width: 100%;
+  flex-shrink: 1;
 }
 .item-add:hover{
   opacity: 0.5;
 }
 
+
 #item-navmenu{
   grid-area: navmenu;
-  background-color: cornsilk;
-  color:darkviolet;
-  align-items: center;
-  position: -webkit-sticky;
-  position: sticky;
 }
+
 #item-switch{
   grid-area: switch;
-  padding: 10px;
-  background-color: cornsilk;
-  color:darkviolet;
+  padding:25px;
+
 }
 #item-footer {
   grid-area: footer;
-  padding: 10px;
-  background-color: cornsilk;
-  color: darkviolet;
-  text-align: center;
 }
 #item-add1{
   grid-area: add1;
@@ -112,4 +99,11 @@ body {
     transform: rotate(360deg);
   }
 }
-
+.fas {
+  font-size: 32px;
+  margin: 0 25px 0 25px;
+  color: darkviolet;
+}
+.fas:hover{
+  color:black;
+}

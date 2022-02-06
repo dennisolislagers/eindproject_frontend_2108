@@ -14,7 +14,6 @@ function Dropbox ({className="selectbox-menu", htmlFor, header, register, name, 
                                 <option value={value6}>{title6}</option>
                             </select>
                 </div>
-
     );
 };
 

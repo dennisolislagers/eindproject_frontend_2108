@@ -15,11 +15,12 @@ import dilleenkamille from "./assets/dille-en-kamille-logo.jpeg"
 import albertheyn from "./assets/logo_albert-heyn.png"
 import jumbo from "./assets/jumbo.png"
 
+
 function App() {
     const { isAuthenticated } = useContext(AuthenticatedContext)
     return (
         <div className="app-container">
-            <div id="item-navmenu">
+            <div className="item" id="item-navmenu">
             <NavMenu />
             </div>
             <div className="item-add" id="add1">
@@ -56,7 +57,7 @@ function App() {
                 </Route>
             </Switch>
             </div >
-            <div id="item-footer">
+            <div className="item" id="item-footer">
                 <Footer />
             </div>
         </div>

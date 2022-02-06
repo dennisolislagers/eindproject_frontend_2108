@@ -1,6 +1,6 @@
 .footer-container{
     display:flex;
     justify-content: space-between;
-    /*align-items: baseline;*/
-    padding: 15px;
+    align-items: center;
+    margin:20px;
 }

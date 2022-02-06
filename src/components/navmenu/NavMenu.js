@@ -17,23 +17,24 @@ function NavMenu () {
     }
 
     return (
-        <nav>
-            <NavLink className="link-button" to="/" ><i className="fas fa-home"> </i></NavLink>
 
+        <nav className="navmenu-container">
+            <NavLink to="/" ><i className="fas fa-home"> </i></NavLink>
                 <p>WAT ETEN WE VANDAAG?</p>
               <span>
                   {isAuthenticated ?
                     <>
-                    <NavLink className="link-button" to="/" onClick= {logoutButton} ><i className="fas fa-sign-out-alt"></i></NavLink>
+                    <NavLink to="/" onClick= {logoutButton} ><i className="fas fa-sign-out-alt"> </i></NavLink>
                     </>
                     :
                     <>
-                    <NavLink className="link-button" to="/inloggen" ><i className="fas fa-sign-in-alt"> </i></NavLink>
-                    <NavLink className="link-button" to="/inschrijven" ><i className="fas fa-user-plus"> </i></NavLink>
+                    <NavLink to="/inloggen" ><i className="fas fa-sign-in-alt"> </i></NavLink>
+                    <NavLink to="/inschrijven" ><i className="fas fa-user-plus"> </i></NavLink>
                     </>
                 }
               </span>
         </nav>
+
     );
 };
 export default NavMenu;
